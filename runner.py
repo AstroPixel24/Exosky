@@ -2,15 +2,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df_stars = pd.read_csv('stars_data_cleaned.csv')
+df_stars = pd.read_csv('stars_data_cleaned2.csv')  
 
-numeric_columns = ['galactic_longitude', 'galactic_latitude', 'visual_magnitude', 'parallax']
+numeric_columns = ['galactic_longitude', 'galactic_latitude', 'visual_magnitude', 'distance']
 df_stars[numeric_columns] = df_stars[numeric_columns].apply(pd.to_numeric, errors='coerce')
+
 df_stars.dropna(subset=numeric_columns, inplace=True)
-df_stars = df_stars[df_stars['parallax'] > 0]
 df_stars.reset_index(drop=True, inplace=True)
 
-df_stars['distance_pc'] = 1000 / df_stars['parallax']
+df_stars['distance_pc'] = df_stars['distance'] 
 
 df_stars['l_rad'] = np.deg2rad(df_stars['galactic_longitude'])
 df_stars['b_rad'] = np.deg2rad(df_stars['galactic_latitude'])
@@ -23,9 +23,9 @@ df_exoplanets = pd.read_csv('exoplanet_data_cleaned.csv')
 required_columns = ['pl_name', 'galactic_latitude', 'galactic_longitude', 'distance', 'visual_mag']
 df_exoplanets = df_exoplanets[required_columns]
 df_exoplanets.dropna(subset=required_columns, inplace=True)
-numeric_columns = ['galactic_latitude', 'galactic_longitude', 'distance', 'visual_mag']
-df_exoplanets[numeric_columns] = df_exoplanets[numeric_columns].apply(pd.to_numeric, errors='coerce')
-df_exoplanets.dropna(subset=numeric_columns, inplace=True)
+numeric_columns_exo = ['galactic_latitude', 'galactic_longitude', 'distance', 'visual_mag']
+df_exoplanets[numeric_columns_exo] = df_exoplanets[numeric_columns_exo].apply(pd.to_numeric, errors='coerce')
+df_exoplanets.dropna(subset=numeric_columns_exo, inplace=True)
 df_exoplanets.reset_index(drop=True, inplace=True)
 
 exoplanet = df_exoplanets.iloc[0] # change depending on which exoplanet you want
@@ -56,6 +56,7 @@ df_stars['galactic_longitude_new'] = np.rad2deg(df_stars['l_new_rad'])
 df_stars['galactic_latitude_new'] = np.rad2deg(df_stars['b_new_rad'])
 
 df_stars['M'] = df_stars['visual_magnitude'] - 5 * (np.log10(df_stars['distance_pc']) - 1)
+
 df_stars['visual_magnitude_new'] = df_stars['M'] + 5 * (np.log10(df_stars['d_new']) - 1)
 
 magnitude_limit = 15
@@ -64,21 +65,10 @@ df_visible_stars = df_stars[df_stars['visual_magnitude_new'] <= magnitude_limit]
 m_ref = magnitude_limit  
 df_visible_stars['brightness'] = 10 ** (-0.4 * (df_visible_stars['visual_magnitude_new'] - m_ref))
 
-size_scale = 2  
+size_scale = 50 
 df_visible_stars['size'] = df_visible_stars['brightness'] * size_scale
-df_visible_stars['size'] = df_visible_stars['size'].clip(lower=0.1)
 
-plt.figure(figsize=(12, 6))
-plt.scatter(
-    df_visible_stars['galactic_longitude_new'],
-    df_visible_stars['galactic_latitude_new'],
-    s=df_visible_stars['size'],
-    color='white',
-    alpha=1  # solid circle
-)
-plt.xlabel('Galactic Longitude (degrees)')
-plt.ylabel('Galactic Latitude (degrees)')
-plt.title(f"Sky as Seen from Exoplanet {exoplanet_name}")
-plt.gca().invert_xaxis()
-plt.gca().set_facecolor('black')
-plt.show()
+df_visible_stars['size'] = df_visible_stars['size'].clip(lower=0.1)
+print(df_visible_stars[['galactic_longitude_new', 'galactic_latitude_new', 'visual_magnitude_new', 'size']].head())
+
+df_visible_stars[['hipparcos_star_name', 'galactic_latitude_new', 'galactic_longitude_new', 'brightness']].to_csv('output_stars.csv', index=False)
