@@ -1,3 +1,5 @@
+# this works
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,7 +51,7 @@ df_stars['z_rel'] = df_stars['z_star'] - z_exo
 df_stars['d_new'] = np.sqrt(df_stars['x_rel']**2 + df_stars['y_rel']**2 + df_stars['z_rel']**2)
 df_stars = df_stars[df_stars['d_new'] > 0]
 
-df_stars['b_new_rad'] = np.arcsin(df_stars['z_rel'] / df_stars['d_new'])
+df_stars['b_new_rad'] = np.arcsin(np.clip(df_stars['z_rel'] / df_stars['d_new'], -1, 1))
 df_stars['l_new_rad'] = np.arctan2(df_stars['y_rel'], df_stars['x_rel'])
 df_stars['l_new_rad'] = df_stars['l_new_rad'] % (2 * np.pi)
 df_stars['galactic_longitude_new'] = np.rad2deg(df_stars['l_new_rad'])
@@ -62,13 +64,43 @@ df_stars['visual_magnitude_new'] = df_stars['M'] + 5 * (np.log10(df_stars['d_new
 magnitude_limit = 15
 df_visible_stars = df_stars[df_stars['visual_magnitude_new'] <= magnitude_limit].copy()
 
-m_ref = magnitude_limit  
-df_visible_stars['brightness'] = 10 ** (-0.4 * (df_visible_stars['visual_magnitude_new'] - m_ref))
+if not df_visible_stars.empty:
+    # Correct m_ref and brightness calculation
+    m_ref = df_visible_stars['visual_magnitude_new'].min()
+    df_visible_stars['brightness'] = 10 ** (-0.4 * (df_visible_stars['visual_magnitude_new'] - m_ref))
 
-size_scale = 50 
-df_visible_stars['size'] = df_visible_stars['brightness'] * size_scale
+    # Adjust size_scale and cap sizes
+    size_scale = 100  # Adjust this value as needed
+    df_visible_stars['size'] = df_visible_stars['brightness'] * size_scale
+    df_visible_stars['size'] = df_visible_stars['size'].clip(lower=0.1, upper=50)
 
-df_visible_stars['size'] = df_visible_stars['size'].clip(lower=0.1)
-print(df_visible_stars[['galactic_longitude_new', 'galactic_latitude_new', 'visual_magnitude_new', 'size']].head())
+    # Drop NaN values if any
+    df_visible_stars.dropna(subset=['galactic_longitude_new', 'galactic_latitude_new', 'size'], inplace=True)
 
-df_visible_stars[['hipparcos_star_name', 'galactic_latitude_new', 'galactic_longitude_new', 'brightness']].to_csv('output_stars.csv', index=False)
+    # Print Data Ranges for Verification
+    print(f"Number of visible stars: {df_visible_stars.shape[0]}")
+    print("Galactic Longitude New Range:", df_visible_stars['galactic_longitude_new'].min(), "-", df_visible_stars['galactic_longitude_new'].max())
+    print("Galactic Latitude New Range:", df_visible_stars['galactic_latitude_new'].min(), "-", df_visible_stars['galactic_latitude_new'].max())
+
+    # Plotting
+    plt.figure(figsize=(12, 6))
+    plt.scatter(
+        df_visible_stars['galactic_longitude_new'],
+        df_visible_stars['galactic_latitude_new'],
+        s=df_visible_stars['size'],
+        color='white',
+        edgecolors='none'  # or 'face'
+    )
+
+    plt.xlabel('Galactic Longitude (degrees)')
+    plt.ylabel('Galactic Latitude (degrees)')
+    plt.title(f"Sky as Seen from Exoplanet {exoplanet_name}")
+
+    # Set axes limits to standard galactic coordinate ranges
+    plt.xlim(0, 360)
+    plt.ylim(-90, 90)
+    plt.gca().invert_xaxis()
+    plt.gca().set_facecolor('black')
+    plt.show()
+else:
+    print("No visible stars found with the current magnitude limit.")
