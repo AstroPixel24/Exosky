@@ -1,0 +1,102 @@
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: #000;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.title {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    background-color: #444444;
+    color: #ddd;
+    text-align: center;
+    line-height: 100px;
+    font-size: 2em;
+}
+
+.starchart{
+    width: 85%;
+    height: 85%;
+    margin: 0 auto;
+    margin-top: 140px;
+    border: white solid 2px;
+}
+
+#starchart {
+    width: 100%;
+    height: 100%;
+    /* display: none; */
+}
+
+#label {
+    position: absolute;
+    top: 110px;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.dropbtn {
+    background-color: #0c1445;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 10px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #0a1767;
+  }
+
+#myInput {
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #0c1445;
+    background-color: #0c1445;
+    color: white;
+    width: 260px;
+}
+
+#myInput:focus {outline: 3px solid #0c1445;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 260px;
+    overflow: auto;
+    border: 1px solid #060c30;
+    z-index: 1;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
