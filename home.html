@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TARS-1: Home</title>
+    <link rel="icon" href="./src/logo.png" type="image/x-icon">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .quote {
+            margin: 20px auto;
+            max-width: 800px;
+            font-style: italic;
+            border-left: 4px solid #0ff;
+            padding-left: 20px;
+            }
+
+        .quote p {
+            font-size: 1.2rem;
+        }
+
+        .quote .author {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #0ff;
+            font-weight: bold;
+        }
+
+        body {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+        .banner {
+            background: url('./src/banner.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #0ff;
+            margin-bottom: 20px;
+        }
+
+        .goTool {
+            background-color: #0ff;
+            padding: 20px;
+            color: #000;
+            margin-top: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .goTool:hover {
+            background-color: #0cc;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+          <img style = "height: 66px;" src = "./src/logo.png"/>
+          <a style = "padding: 1.5vh; margin-left: 0.5vh;">TARS-1</a>
+        </div>
+        <ul class="nav-items">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="index.html">Exosky</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div style = "position: absolute; width: 100%; height: 60vh; background-color: rgba(0,0,0,0.2)"></div>
+        <h1 style = "z-index: 692">Explore the Stars from a New Perspective</h1>
+    </div>
+
+    <div class="section" id="mission">
+        <h2>Our Mission</h2>
+        <p>Providing everyone a way to expand their perspective about the stars and proliferating the beautity of astronomy to all.</p>
+    </div>
+
+    <div class="section" id="second">
+        <h2>Why expand your Point of View?</h2>
+        <p>Exploring the stars from exoplanets offers a new perspective on our place in the universe. 
+        By immersing ourselves in the celestial views from these distant worlds, 
+        we can better appreciate the diversity and vastness of the cosmos.</p>
+    </div>
+
+    <div class="section" id="try">
+        <div class="quote">
+            <p>“We are all in the gutter, but some of us are looking at the stars.”</p>
+            <div class="author"> — Oscar Wilde</div>
+        </div>
+        <p>Using hundreds of thousands of star and exoplanet data from NASA, TARS-1 primes to provide you the perspective of exoplanets on the sky throughout the observable universe.</p>
+        <p>Try out <a href = "index.html" style = "color: #0ff ;text-decoration: none;font-style: italic; display: inline-block"> Exosky </a> to explore the cosmos from another perspective.</p>
+        <div class="goTool" onclick="location.href='index.html'">Explore the Universe Now</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

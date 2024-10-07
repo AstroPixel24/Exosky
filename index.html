@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +8,50 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="title">Exosky</div>
-    <div id="label"></div>
+    <nav class="navbar">
+        <div class="logo">
+          <img style = "height: 66px" src = "./src/logo.png"/>
+          <a style = "padding: 1.5vh; margin-left: 0.5vh;">TARS-1</a>
+        </div>
+        <ul class="nav-items">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="index.html">Exosky</a></li>
+        </ul>
+    </nav>
+
+    <div id="label">LOADING...</div>
     <div class="starchart">
-        <canvas id="starchart" width="1200" height="600"></canvas>
+        <canvas id="placeholder" width="2400" height="1200"></canvas>
+        <canvas id="background" width="2400" height="1200"></canvas>
+        <canvas id="starchart" width="2400" height="1200"></canvas>
     </div>
     
-    <div class="dropdown" style="margin-top: 50px;">
+    <div class="dropdown" style="margin-top: 20px;">
+        <div class="buttonCont" style="display: flex; align-items: center;">
+            <button onclick="generate()" class="dropbtn" style="margin-right: 50px;" id="gen">Generate Image</button>
+            <button id="download" class="dropbtn" style="">Download Image</button>
+            <input type="number" placeholder="Lowest Magnitude Shown" style="margin-left: 50px;" id="magfilt" value="15" max="15">
+            
+            <span style="display: flex; flex-direction: column; margin-left: 20px;">
+                <!-- First Switch -->
+                <span class="toggle-switch" style="display: inline-flex; align-items: center; color: white;">
+                    <input class="toggle-input" id="toggle1" type="checkbox">
+                    <label class="toggle-label" for="toggle1" style="margin-right: 10px;"></label>
+                    <span id="toggle1label" style="display: inline-flex; white-space: nowrap; margin-left: 50px; color: white;">Stars</span>
+                </span>
+    
+                <!-- Second Switch -->
+                <span class="toggle-switch" style="display: inline-flex; align-items: center; color: white;">
+                    <input class="toggle-input" id="toggle2" type="checkbox">
+                    <label class="toggle-label" for="toggle2" style="margin-right: 10px;"></label>
+                    <span id="toggle2label" style="display: inline-flex; white-space: nowrap; margin-left: 50px; color: white;">Galactic Disc</span>
+                </span>
+            </span>
+        </div> 
         <input type="text" placeholder="Choose An Exoplanet" id="myInput" onkeyup="filterFunction()">
         <div id="myDropdown" class="dropdown-content">
-          
         </div>
-        <button onclick="fetchData()" class="dropbtn" style="">Generate Image</button>
-
-      </div>
-
+    </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="script.js"></script>
