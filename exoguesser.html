@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Exo-Guesser</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="overflow-x: hidden; overflow-y: hidden;">
+    <nav class="navbar">
+        <div class="logo">
+          <img style = "height: 66px" src = "./src/logo.png"/>
+          <a style = "padding: 1.5vh; margin-left: 0.5vh;">TARS-1</a>
+        </div>
+        <ul class="nav-items">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="index.html">Exosky</a></li>
+          <li style="margin-right: 20px;"><a href="exoguesser.html">ExoGuesser</a></li>
+        </ul>
+    </nav>
+
+    <div id="label" style="white-space: pre;">LOADING...</div>
+    <div class="starchart">
+        <canvas id="placeholder" width="2400" height="1200"></canvas>
+        <canvas id="background" width="2400" height="1200"></canvas>
+        <canvas id="starchart" width="2400" height="1200"></canvas>
+    </div>
+    
+    <div class="dropdown" style="margin-top: 20px;">
+        <div class="buttonCont" style="display: flex; align-items: center;">
+            <button onclick="guess()" class="dropbtn" style="margin-right: 50px;" id="gen">Guess</button>
+            <button onclick="hint()" class="dropbtn" style="">Add Hint</button>
+            <input type="text" placeholder="Guess" style="margin-left: 50px;" id="magfilt">
+            
+            <span style="display: flex; flex-direction: column; margin-left: 20px;">
+                <!-- First Switch -->
+                <span class="toggle-switch" style="display: inline-flex; align-items: center; color: white;">
+                    <input class="toggle-input" id="toggle1" type="checkbox">
+                    <label class="toggle-label" for="toggle1" style="margin-right: 10px;"></label>
+                    <span id="toggle1label" style="display: inline-flex; white-space: nowrap; margin-left: 50px; color: white;">Stars</span>
+                </span>
+    
+                <!-- Second Switch -->
+                <span class="toggle-switch" style="display: inline-flex; align-items: center; color: white;">
+                    <input class="toggle-input" id="toggle2" type="checkbox">
+                    <label class="toggle-label" for="toggle2" style="margin-right: 10px;"></label>
+                    <span id="toggle2label" style="display: inline-flex; white-space: nowrap; margin-left: 50px; color: white;">Galactic Halo</span>
+                </span>
+            </span>
+        </div> 
+        </div>
+    </div>
+
+    <script src="script-2.js"></script>
+</body>
+</html>

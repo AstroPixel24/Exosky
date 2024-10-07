@@ -71,12 +71,12 @@ body{
     margin-top: 1vh;
     text-align: center;
     width: 100%;
-    color: white;
+    color: #fff;
 }
 
 .dropbtn {
-    background-color: #0c1445;
-    color: white;
+    background-color: #222;
+    color: #0ff;
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -87,7 +87,7 @@ body{
 }
   
   .dropbtn:hover, .dropbtn:focus {
-    background-color: #0a1767;
+    background-color: #444;
   }
 
 #myInput {
@@ -95,35 +95,35 @@ body{
     box-sizing: border-box;
     font-size: 16px;
     padding: 14px 20px 12px 45px;
-    background-color: #0c1445;
+    background-color: #222;
     width: 80vw;
-    color: white;
+    color: #0ff;
     margin-right: 0.5vw;
-    outline: 3px solid #0c1445;
+    outline: 3px solid #222;
     border-radius: 10px;
     border: none;
     transition: .5s ease all;
 }
 
 #myInput:focus {
-    outline: 3px solid #0c1863;
+    outline: 3px solid #444;
 }
 
 #magfilt {
     box-sizing: border-box;
     font-size: 16px;
     padding: 14px 20px 12px 30px;
-    background-color: #0c1445;
+    background-color: #222;
     width: 250px;
-    color: white;
-    outline: 3px solid #0c1445;
+    color: #0ff;
+    outline: 3px solid #222;
     border-radius: 10px;
     border: none;
     transition: .5s ease all;
 }
 
 #magfilt:focus {
-    outline: 3px solid #0c1863;
+    outline: 3px solid #444;
 }
 
 .dropdown {
@@ -138,11 +138,11 @@ body{
 
 .dropdown-content {
     position: absolute;
-    background-color: #0c1445;
+    background-color: #222;
     border-radius: 10px;
     width: 80vw;
     overflow: auto;
-    border: 1px solid #0c1445;
+    border: 1px solid #222;
     z-index: 1;
     height: 500px;
     overflow-x: hidden;
@@ -152,7 +152,7 @@ body{
 }
 
 .dropdown-content a {
-    color: white;
+    color: #0ff;
     /* padding: 12px 16px; */
     text-decoration: none;
     display: inline-block;
@@ -173,7 +173,7 @@ body{
     margin-top: 1vw;
 }
 
-.dropdown a:hover {background-color: #0c1863;}
+.dropdown a:hover {background-color: #444;}
 
   /* Genel stil */
 .toggle-switch {
@@ -196,7 +196,7 @@ body{
     left: 0;
     width: 40px;
     height: 24px;
-    background-color: #0c1863;
+    background-color: #0ff;
     border-radius: 34px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -211,14 +211,14 @@ body{
     border-radius: 50%;
     top: 2px;
     left: 2px;
-    background-color: #fff;
+    background-color: #222;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
   }
   
   /* Anahtarın etkin hale gelmesindeki stil değişiklikleri */
   .toggle-switch .toggle-input:checked + .toggle-label {
-    background-color: #0c1445;
+    background-color: #444;
   }
   
   .toggle-switch .toggle-input:checked + .toggle-label::before {
@@ -257,7 +257,7 @@ body{
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: #111 !important; 
+    background-color: #222 !important; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 999;
